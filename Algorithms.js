@@ -304,3 +304,59 @@ const insertionSort = (arr) => {
 }
 
 console.log('INSERTION SORT: ', insertionSort([-6,-8,-15,1,10,11,7,2]))
+
+// [-6,-8,-15,1] 2 [10,11,7]
+// [-6-8-15] 1      7 [10, 11]
+// -15 [-6 -8]        10 [11]
+// -8 [-6]
+// [-15, -8, -6, 1, 2, 7, 10, 11]
+
+const quickSort = (arr) => {
+
+    if(arr.length < 2) return arr;
+
+    let pivot = arr[arr.length-1];
+    const arrRight = [];
+    const arrLeft = [];
+
+    for(let i = 0; i < arr.length-1; i++){
+        if(pivot > arr[i]) arrLeft.push(arr[i]);
+        else arrRight.push(arr[i])
+    }
+    return [...quickSort(arrLeft), pivot, ...quickSort(arrRight)]
+    
+    // Worst case: O(n^2)
+    // Average case O(log(n))
+    
+}
+
+console.log('QUICK SORT: ', quickSort([-6,-8,-15,1,10,11,7,2]))
+
+// Merge Sort
+
+const merge = (arrLeft, arrRight) => {
+    const sortedArr = [];
+
+    while(arrLeft.length > 0 && arrRight.length > 0 ){
+        if(arrLeft[0] < arrRight[0]) {
+            sortedArr.push(arrLeft.shift())
+        } else {
+            sortedArr.push(arrRight.shift())
+        }
+    }
+
+    return [...sortedArr, ...arrLeft, ...arrRight]
+
+}
+
+const mergeSort = (arr) => {
+    if(arr.length < 2) return arr;
+
+    const arrLeft = arr.slice(0, Math.floor(arr.length/2));
+    const arrRight = arr.slice(Math.floor(arr.length/2));
+
+    return merge(mergeSort(arrLeft), mergeSort(arrRight))
+}
+
+console.log('MERGE SORT: ', mergeSort([-6,-8,-15,1,10,11,7,2]))
+
