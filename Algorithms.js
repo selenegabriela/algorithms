@@ -356,7 +356,57 @@ const mergeSort = (arr) => {
     const arrRight = arr.slice(Math.floor(arr.length/2));
 
     return merge(mergeSort(arrLeft), mergeSort(arrRight))
+
+    // O(nlog(n))
 }
 
-console.log('MERGE SORT: ', mergeSort([-6,-8,-15,1,10,11,7,2]))
+console.log('MERGE SORT: ', mergeSort([-6,-8,-15,1,10,11,7,2]));
 
+// CARTESIAN PRODUCT
+
+const cartesianProduct = (arrA, arrB) => {
+    // arrA = [1,2]
+    // arrB = [3,4,5]
+    const arrAxB = []
+    for(let i = 0; i < arrA.length; i++){
+        for(let j = 0; j < arrB.length; j++){
+            arrAxB.push([arrA[i], arrB[j]])
+        }
+    }
+    return arrAxB;
+    // O(mn)
+}
+
+console.log('CARTESIAN PRODUCT: ', cartesianProduct([1,2,3], [3,4,5,6]));
+
+const climbingStairs = (stairs) => {
+    if(stairs <= 1 ) return 1;
+
+    return climbingStairs(stairs-1) + climbingStairs(stairs-2);
+}
+
+console.log('CLIMBING STAIRS: ', climbingStairs(4));
+
+const climbingStairscase = (stairs) => {
+    const numberOfSteps = [1, 2];
+    for(let i = 2; i < stairs; i++){
+        numberOfSteps[i] = numberOfSteps[i-1] + numberOfSteps[i-2]
+    }
+    return numberOfSteps[stairs-1];
+
+    // O(n)
+}
+
+console.log('CLIMBING STAIRSCASE FOR LOOP: ', climbingStairscase(5));
+
+
+const towerOfHanoi = (n, fromRod, toRod, usingRod) => {
+    if(n === 1) {
+        return console.log(`Moving disk 1 from ${fromRod} to ${toRod}`)
+    }
+    towerOfHanoi(n-1, fromRod, usingRod, toRod)
+    console.log(`Moving disk ${n} from ${fromRod} to ${toRod}`)
+    towerOfHanoi(n-1, usingRod, toRod, fromRod)
+}
+
+   towerOfHanoi(3, 'A', 'B', 'C');
