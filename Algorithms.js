@@ -35,7 +35,7 @@ const fibonacciRecursion = (num) => {
     // O(2^n)
 }
 
-console.log('FIBONACCI RECURSION: ', fibonacciRecursion(6))
+console.log('FIBONACCI RECURSION: ', fibonacciRecursion(7))
 
 // Factorial
 
@@ -199,7 +199,7 @@ const binarySearch = (arr, t) => {
     }
     return -1
 
-    // O(n)
+    // O(log(n))
 }
 
 console.log('BINARY SEARCH: ', binarySearch([2,3,4,5,6,8,10,15,17,20,21,30], 50));
@@ -402,11 +402,13 @@ console.log('CLIMBING STAIRSCASE FOR LOOP: ', climbingStairscase(5));
 
 const towerOfHanoi = (n, fromRod, toRod, usingRod) => {
     if(n === 1) {
-        return console.log(`Moving disk 1 from ${fromRod} to ${toRod}`)
+        console.log(`Moving disk 1 from ${fromRod} to ${toRod}`)
+        return
     }
     towerOfHanoi(n-1, fromRod, usingRod, toRod)
     console.log(`Moving disk ${n} from ${fromRod} to ${toRod}`)
     towerOfHanoi(n-1, usingRod, toRod, fromRod)
+    // O(2^n)
 }
 
-   towerOfHanoi(3, 'A', 'B', 'C');
+   towerOfHanoi(3, 'A', 'C', 'B');
