@@ -197,3 +197,72 @@ const bubbleSortRecursion = (arr, swapped = false) => {
 }
 
 console.log('BUBBLE SORT RECURSION: ', bubbleSortRecursion([21,15,-10,8,5,7,3,95,6]));
+
+const insertionSort = (arr) => {
+    
+    for(let i = 1; i < arr.length; i++){
+        let numberToInsert = arr[i];
+        let index = i - 1;
+        while(numberToInsert < arr[index] && index >= 0){
+            arr[index+1] = arr[index]
+            index--;
+        }
+        arr[index+1] = numberToInsert;
+    }
+    
+    return arr;
+
+    //O(n^2)
+}
+
+console.log('INSERTION SORT: ', insertionSort([21,15,-10,8,5,7,3,95,6]));
+
+const quickSort = (arr) => {
+
+    if(arr.length < 2) return arr;
+
+    let pivot = arr[arr.length-1];
+    const leftArr = [];
+    const rightArr = [];
+
+
+    for(let i = 0; i < arr.length-1; i++){
+        if(arr[i] > pivot){
+            rightArr.push(arr[i]);
+        } else {
+            leftArr.push(arr[i]);
+        }
+    }
+
+    return [...quickSort(leftArr), pivot, ...quickSort(rightArr)]
+}
+
+console.log('QUICK SORT: ', quickSort([21,15,-10,8,5,7,3,95,6]));
+
+const merge = (leftArr, rightArr) => {
+    const sortedArr = [];
+
+    while(rightArr.length > 0 && leftArr.length > 0){
+        if(rightArr[0] > leftArr[0]){
+            sortedArr.push(leftArr.shift())
+        } else {
+            sortedArr.push(rightArr.shift())
+        }
+    }
+
+    return [...sortedArr, ...leftArr, ...rightArr]
+}
+
+const mergeSort = (arr) => {
+    
+    if(arr.length < 2) return arr;
+
+    const middle = Math.floor(arr.length / 2);
+    const rightArr = arr.slice(middle);
+    const leftArr = arr.slice(0, middle)
+
+    return merge(mergeSort(leftArr), mergeSort(rightArr))
+    
+}
+
+console.log('MERGE SORT: ', mergeSort([21,15,-10,8,5,7,3,95,6]));
