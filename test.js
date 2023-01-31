@@ -266,3 +266,25 @@ const mergeSort = (arr) => {
 }
 
 console.log('MERGE SORT: ', mergeSort([21,15,-10,8,5,7,3,95,6]));
+
+const climbingStairs = (n) => {
+    const numberOfSteps = [1, 2];
+    
+    for(let i = 2; i <= n; i++){
+        numberOfSteps[i] = numberOfSteps[i-1] + numberOfSteps[i-2];
+    }
+    
+    return numberOfSteps[n-1];
+}
+
+console.log('CLIMBING STAIRS: ', climbingStairs(5));
+
+const towerOfHanoi = (n, fromRod, toRod, usingRod) => {
+    if(n === 1) return console.log(`Moving disk 1 from ${fromRod} to ${toRod}`);
+    
+    towerOfHanoi(n-1, fromRod, usingRod, toRod);
+    console.log(`Moving disk ${n} from ${fromRod} to ${toRod}`);
+    towerOfHanoi(n-1, usingRod, toRod, fromRod);
+}
+
+towerOfHanoi(3, 'A', 'C', 'B');
