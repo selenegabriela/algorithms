@@ -78,3 +78,96 @@ console.log('SIZE', stack.size())
 
 
 console.log('STACK: ', stack)
+
+// QUEUE 
+
+class Queue {
+    constructor(){
+        this.array = []
+    }
+
+    enqueue(value){
+        this.array.push(value)
+    }
+    dequeue(){
+        return this.array.shift()
+    }
+    peek(){
+        if(!this.isEmpty()){
+            return this.array[0]
+        }
+        return null
+    }
+    isEmpty(){
+        return this.array.length === 0
+    }
+    size(){
+        return this.array.length
+    }
+    print(){
+        console.log(this.array.toString())
+    }
+}
+
+const queue = new Queue()
+console.log('QUEUE: ')
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.enqueue(4)
+console.log(queue)
+
+queue.dequeue()
+
+console.log(queue)
+console.log(queue.isEmpty())
+console.log(queue.size())
+queue.print()
+console.log(queue.peek())
+
+// QUEUE Object
+
+class QueueObject {
+    constructor(){
+        this.obj = {}
+        this.rear = 0
+        this.front = 0
+    }
+
+    enqueue(value){
+        this.obj[this.rear] = value;
+        this.rear++
+    }
+    dequeue(){
+        const deleted = this.obj[this.front]
+        delete this.obj[this.front]
+        this.front++
+        return deleted
+    }
+    isEmpty(){
+        return (this.rear-this.front) === 0
+    } 
+    peek(){
+        return this.obj[this.front]
+    }
+    size(){
+        return this.rear - this.front
+    }
+    print(){
+        console.log(this.obj)
+    }
+}
+
+const queue2 = new QueueObject()
+queue2.enqueue(0)
+queue2.enqueue(2)
+queue2.enqueue(10)
+console.log(queue2)
+console.log('jeje',queue2.dequeue())
+queue2.enqueue(50)
+console.log('jeje',queue2.dequeue())
+console.log('peek',queue2.peek())
+console.log('size',queue2.size())
+queue2.print()
+console.log('jeje',queue2.isEmpty())
+console.log(queue2)
