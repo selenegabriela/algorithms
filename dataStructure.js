@@ -171,3 +171,56 @@ console.log('size',queue2.size())
 queue2.print()
 console.log('jeje',queue2.isEmpty())
 console.log(queue2)
+
+// CIRCULAR QUEUE
+
+class circularQueue {
+    constructor(capacity){
+        this.items = new Array(capacity);
+        this.capacity = capacity;
+        this.currentLength = 0;
+        this.rare = -1;
+        this.front = -1;
+    }
+
+    isFull(){
+        return this.currentLength === this.capacity;
+    }
+
+    isEmpty(){
+        return this.currentLength === 0;
+    }
+
+    enqueue(value){
+        if(!this.isFull()){
+            this.rare = (this.rare + 1) % this.capacity;
+            this.items[this.rare] = value;
+            this.currentLength++;
+            if(this.front === -1){
+                this.front++
+            }
+        }
+    }
+
+    dequeue(){
+        if(!this.isEmpty()){
+            const item = this.items[this.front];
+            this.items[this.front] = null;
+            this.front =  (this.front + 1) % this.capacity;
+            this.currentLength--;
+            if(this.isEmpty()){
+                this.rare = -1;
+                this.front = -1;
+            }
+            return item;
+        }
+        return null;
+    }
+
+    peek(){
+        if(!this.isEmpty()){
+            return this.items[this.front];
+        }
+        return null;
+    }
+}
