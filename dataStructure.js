@@ -9,7 +9,7 @@
 // shift / unshift / concat / slice / splice - O(n)
 // forEach / map / filter / reduce - O(n)
 
-// OBJECTS
+// // OBJECTS
 const obj2 = {
     name: 'sel',
     lastName: 'amador díaz',
@@ -18,26 +18,26 @@ const obj2 = {
     }
 }
 
-const hi = obj2.sayHiToMe();
-console.log('ENTRIES: ', Object.entries(obj2))
-console.log('VALUES: ', Object.values(obj2))
-console.log('KEYS: ', Object.keys(obj2))
+// const hi = obj2.sayHiToMe();
+// console.log('ENTRIES: ', Object.entries(obj2))
+// console.log('VALUES: ', Object.values(obj2))
+// console.log('KEYS: ', Object.keys(obj2))
 
 // Insert / Remove / Access - O(1)
 // Search / Object.keys(), .values(), .entries() - O(n)
 
 // MAP
 
-const map = new Map([[1, 'a'], [2, 'b'], [true, [2]]])
-map.set('a', 2)
-console.log(map.has('b'))
-for(const [key, value] of map){
-    console.log(`${key}: ${value}`)
-}
-map.delete(true)
-console.log('MAP: ', map)
+// const map = new Map([[1, 'a'], [2, 'b'], [true, [2]]])
+// map.set('a', 2)
+// console.log(map.has('b'))
+// for(const [key, value] of map){
+//     console.log(`${key}: ${value}`)
+// }
+// map.delete(true)
+// console.log('MAP: ', map)
 
-// STACK (LIFO) -> Last In First Out
+// // STACK (LIFO) -> Last In First Out
 
 class Stack {
     constructor(){
@@ -64,22 +64,22 @@ class Stack {
     }
 }
 
-const stack = new Stack()
-stack.push(1);
-stack.push(2);
-stack.push(3);
-stack.push(4);
-stack.push(5);
-stack.print();
-console.log('POP: ', stack.pop())
-console.log('PEEK: ', stack.peek())
-console.log('IS EMPTY: ', stack.isEmpty())
-console.log('SIZE', stack.size())
+// const stack = new Stack()
+// stack.push(1);
+// stack.push(2);
+// stack.push(3);
+// stack.push(4);
+// stack.push(5);
+// stack.print();
+// console.log('POP: ', stack.pop())
+// console.log('PEEK: ', stack.peek())
+// console.log('IS EMPTY: ', stack.isEmpty())
+// console.log('SIZE', stack.size())
 
 
-console.log('STACK: ', stack)
+// console.log('STACK: ', stack)
 
-// QUEUE 
+// // QUEUE 
 
 class Queue {
     constructor(){
@@ -109,21 +109,21 @@ class Queue {
     }
 }
 
-const queue = new Queue()
-console.log('QUEUE: ')
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-queue.enqueue(4)
-console.log(queue)
+// const queue = new Queue()
+// console.log('QUEUE: ')
+// queue.enqueue(1)
+// queue.enqueue(2)
+// queue.enqueue(3)
+// queue.enqueue(4)
+// console.log(queue)
 
-queue.dequeue()
+// queue.dequeue()
 
-console.log(queue)
-console.log(queue.isEmpty())
-console.log(queue.size())
-queue.print()
-console.log(queue.peek())
+// console.log(queue)
+// console.log(queue.isEmpty())
+// console.log(queue.size())
+// queue.print()
+// console.log(queue.peek())
 
 // QUEUE Object
 
@@ -158,19 +158,19 @@ class QueueObject {
     }
 }
 
-const queue2 = new QueueObject()
-queue2.enqueue(0)
-queue2.enqueue(2)
-queue2.enqueue(10)
-console.log(queue2)
-console.log('jeje',queue2.dequeue())
-queue2.enqueue(50)
-console.log('jeje',queue2.dequeue())
-console.log('peek',queue2.peek())
-console.log('size',queue2.size())
-queue2.print()
-console.log('jeje',queue2.isEmpty())
-console.log(queue2)
+// const queue2 = new QueueObject()
+// queue2.enqueue(0)
+// queue2.enqueue(2)
+// queue2.enqueue(10)
+// console.log(queue2)
+// console.log('jeje',queue2.dequeue())
+// queue2.enqueue(50)
+// console.log('jeje',queue2.dequeue())
+// console.log('peek',queue2.peek())
+// console.log('size',queue2.size())
+// queue2.print()
+// console.log('jeje',queue2.isEmpty())
+// console.log(queue2)
 
 // CIRCULAR QUEUE
 
@@ -223,4 +223,60 @@ class circularQueue {
         }
         return null;
     }
+    print(){
+        if(this.isEmpty()){
+            console.log('Queue is empty');
+        } else {
+            let i;
+            let str = '';
+            for(i = this.front; i !== this.rare; i = (i + 1) % this.capacity){
+                str += this.items[i] + ' ';
+            }
+            str += this.items[i];
+            console.log(str)
+        }
+    }
 }
+
+// const queue3 = new circularQueue(5);
+
+// queue3.enqueue('a');
+// queue3.enqueue('b');
+// queue3.enqueue('c');
+// queue3.enqueue('d');
+// console.log(queue3.dequeue());
+// console.log(queue3.isEmpty());
+// queue3.enqueue('e');
+// queue3.enqueue('f');
+// console.log(queue3.isFull());
+
+// console.log(queue3.peek());
+// queue3.print();
+
+// LINKED LIST
+
+class Node {
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    constructor(){
+        this.head = null;
+        this.size = 0;
+    }
+
+    isEmpty(){
+        return this.size === 0;
+    }
+
+    getSize(){
+        return this.size;
+    }
+}
+
+const linkedlist = new LinkedList();
+console.log(linkedlist.isEmpty())
+console.log(linkedlist.getSize())
