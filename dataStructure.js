@@ -275,8 +275,51 @@ class LinkedList {
     getSize(){
         return this.size;
     }
+    
+    prepend(value){
+        const node = new Node(value);
+        if(!this.isEmpty()){
+            node.next = this.head;
+        }
+        this.head = node;
+        this.size++;
+    }
+
+    print(){
+        if(this.isEmpty()) {
+            console.log('List is empty');
+        } else {
+            let current = this.head;
+            let list = ''
+            while(current){
+                list += current.value + ' ';
+                current = current.next;
+            }
+            console.log(list)
+        }
+    }
+
+    append(value){
+        const node = new Node(value)
+        if(this.isEmpty()){
+            this.head = node;
+        } else {
+            let current = this.head;
+            while(current.next){
+                current = current.next;
+            }
+            current.next = node;
+        }
+        this.size++;
+    }
 }
 
 const linkedlist = new LinkedList();
-console.log(linkedlist.isEmpty())
-console.log(linkedlist.getSize())
+// console.log(linkedlist.isEmpty())
+// console.log(linkedlist.getSize())
+console.log(linkedlist.print())
+linkedlist.append(2)
+console.log(linkedlist.print())
+linkedlist.append(4)
+linkedlist.append(6)
+console.log(linkedlist.print())
