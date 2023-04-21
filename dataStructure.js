@@ -312,6 +312,24 @@ class LinkedList {
         }
         this.size++;
     }
+    insert(value, index){
+        if(index < 0 || index > this.size) return;
+        if(index === 0) {
+            this.prepend(value);
+        } else if(index === this.size){
+            this.append(value)
+        } else {
+            let node = new Node(value);
+            let currentIndex = 0;
+            let previous = this.head;
+            while(currentIndex !== index-1){
+                currentIndex++;
+                previous = previous.next;     
+            }
+            node.next = previous.next
+            previous.next = node;
+        }
+    }
 }
 
 const linkedlist = new LinkedList();
@@ -322,4 +340,7 @@ linkedlist.append(2)
 console.log(linkedlist.print())
 linkedlist.append(4)
 linkedlist.append(6)
+linkedlist.append(8)
+console.log(linkedlist.print())
+linkedlist.insert(10, 0);
 console.log(linkedlist.print())
