@@ -12,3 +12,30 @@ const uberMoreExpensiveICanAfford = (length, fares, credit) => {
 }
 
 console.log(uberMoreExpensiveICanAfford(length, fares, credit));
+
+const deleteLetters = (word, letter) => {
+	return word.replaceAll(letter, '');
+}
+
+console.log(deleteLetters('Yougov', 'o'));
+
+const deleteLettersSecond = (word, letter) => {
+	let newWord = '';
+	[...word].forEach(l => {
+		if(l !== letter) newWord += l;
+	})
+
+	return newWord;
+}
+
+console.log(deleteLettersSecond('Yougov', 'o'));
+
+const deleteLetterThird = (word, letter) => {
+	let newWord = '';
+	for(let i = 0; i < word.length; i++){
+		if(word[i] !== letter) newWord += word[i];
+	}
+	return newWord
+}
+
+console.log(deleteLetterThird('Yougov', 'o'));
