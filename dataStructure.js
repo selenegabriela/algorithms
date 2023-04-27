@@ -370,9 +370,23 @@ class LinkedList {
             this.size--;
         }
 
-        return removedNode?.value ?? removedNode;
-    
-        
+        return removedNode?.value ?? removedNode;  
+    }
+    search(value){
+        if(this.isEmpty()) {
+            return -1;
+        } else {
+            let index = 0;
+            let current = this.head;
+            while(current){
+                if(current.value === value){
+                    return index;
+                } 
+                current = current.next;
+                index++;
+            }
+            return -1;
+        }
     }
 }
 
@@ -389,4 +403,5 @@ console.log(linkedlist.print())
 linkedlist.insert(10, 0);
 console.log(linkedlist.removeValue(20));
 // console.log(linkedlist.removeValue(10));
+console.log(linkedlist.search(20));
 console.log(linkedlist.print())
