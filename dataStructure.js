@@ -388,6 +388,20 @@ class LinkedList {
             return -1;
         }
     }
+    reverse(){
+        let previous = null;
+        let current = this.head;
+        
+        while (current) {
+          const next = current.next;
+          current.next = previous;
+          previous = current;
+          current = next;
+        }
+        
+        this.head = previous;
+        return;
+    }
 }
 
 const linkedlist = new LinkedList();
@@ -404,4 +418,5 @@ linkedlist.insert(10, 0);
 console.log(linkedlist.removeValue(20));
 // console.log(linkedlist.removeValue(10));
 console.log(linkedlist.search(20));
+console.log(linkedlist.reverse());
 console.log(linkedlist.print())
