@@ -404,19 +404,104 @@ class LinkedList {
     }
 }
 
-const linkedlist = new LinkedList();
-// console.log(linkedlist.isEmpty())
-// console.log(linkedlist.getSize())
-console.log(linkedlist.print())
-linkedlist.append(2)
-console.log(linkedlist.print())
-linkedlist.append(4)
-linkedlist.append(6)
-linkedlist.append(8)
-console.log(linkedlist.print())
-linkedlist.insert(10, 0);
-console.log(linkedlist.removeValue(20));
-// console.log(linkedlist.removeValue(10));
-console.log(linkedlist.search(20));
-console.log(linkedlist.reverse());
-console.log(linkedlist.print())
+// const linkedlist = new LinkedList();
+// // console.log(linkedlist.isEmpty())
+// // console.log(linkedlist.getSize())
+// console.log(linkedlist.print())
+// linkedlist.append(2)
+// console.log(linkedlist.print())
+// linkedlist.append(4)
+// linkedlist.append(6)
+// linkedlist.append(8)
+// console.log(linkedlist.print())
+// linkedlist.insert(10, 0);
+// console.log(linkedlist.removeValue(20));
+// // console.log(linkedlist.removeValue(10));
+// console.log(linkedlist.search(20));
+// console.log(linkedlist.reverse());
+// console.log(linkedlist.print())
+
+class NodeTail {
+    constructor(value){
+        this.value = value,
+        this.next = null
+    }
+}
+
+class LinkedListTail {
+    constructor(){
+        this.head = null,
+        this.tail = null,
+        this.size = 0
+    }
+
+    isEmpty(){
+        return this.size === 0;
+    }
+
+    getSize(){
+        return this.size;
+    }
+
+    print(){
+        if(this.isEmpty()){
+            console.log('List is empty');
+        } else {
+            let current = this.head;
+            let values = '';
+
+            while(current){
+                values = values + current.value + ' ';
+                current = current.next;
+            }
+            console.log(values)
+        }
+    }
+    prepend(value){
+        const node = new NodeTail(value);
+        if(this.isEmpty()) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            node.next = this.head;
+            this.head = node;
+        }
+        this.size++;
+    }
+
+    append(value){
+        const node = new NodeTail(value);
+        if(this.isEmpty()){
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.tail.next = node;
+            this.tail = node;
+        }
+        this.size++;
+    }
+    removeFromFront(){
+        if(this.isEmpty()){
+            return null;
+        } else {
+            const value = this.head.value;
+            this.head = this.head.next;
+            this.size--;
+            return value;
+        }
+    }
+}
+
+const newList = new LinkedListTail()
+
+newList.prepend(1);
+newList.prepend(2);
+newList.prepend(3);
+newList.append(4);
+newList.append(5);
+newList.append(6);
+console.log(newList.removeFromFront());
+
+newList.print()
+
+
