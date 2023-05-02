@@ -490,6 +490,25 @@ class LinkedListTail {
             return value;
         }
     }
+    removeFromEnd(){
+        if(this.isEmpty()){
+            return null;
+        }
+        const value = this.tail.value;
+        if(this.size === 1){
+            this.head = null;
+            this.tail = null;
+        } else {
+            let previous = this.head;
+            while(previous.next !== this.tail){
+                previous = previous.next;
+            }
+            previous.next = null;
+            this.tail = previous;
+        }
+        size--;
+        return value;
+    }
 }
 
 const newList = new LinkedListTail()
@@ -501,6 +520,7 @@ newList.append(4);
 newList.append(5);
 newList.append(6);
 console.log(newList.removeFromFront());
+console.log(newList.removeFromEnd());
 
 newList.print()
 
