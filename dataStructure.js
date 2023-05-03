@@ -506,22 +506,90 @@ class LinkedListTail {
             previous.next = null;
             this.tail = previous;
         }
-        size--;
+        this.size--;
         return value;
     }
 }
 
-const newList = new LinkedListTail()
+// const newList = new LinkedListTail()
 
-newList.prepend(1);
-newList.prepend(2);
-newList.prepend(3);
-newList.append(4);
-newList.append(5);
-newList.append(6);
-console.log(newList.removeFromFront());
-console.log(newList.removeFromEnd());
+// newList.prepend(1);
+// newList.prepend(2);
+// newList.prepend(3);
+// newList.append(4);
+// newList.append(5);
+// newList.append(6);
+// console.log(newList.removeFromFront());
+// console.log(newList.removeFromEnd());
 
-newList.print()
+// newList.print()
 
+class DoubleNode {
+    constructor(value){
+        this.previous = null;
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class DoubleLinkedList {
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    isEmpty(){
+        return this.size === 0;
+    }
+
+    getSize(){
+        return this.size;
+    }
+
+    prepend(value){
+        const node = new DoubleNode(value);
+        if(this.isEmpty()){
+            this.head = node;
+            this.tail = node; 
+        } else {
+            this.head.previous = node;
+            node.next = this.head;
+            this.head = node;   
+        }
+        this.size++;
+    }
+
+    printFromFront(){
+        let elements = '';
+
+        let current = this.head;
+        while(current){
+            elements += `${current.value} `
+            current = current.next;
+        }
+        console.log(elements)
+    }
+
+    printFromEnd(){
+        let elements = '';
+
+        let current = this.tail;
+        while(current){
+            elements += `${current.value} `
+            current = current.previous;
+        }
+        console.log(elements)
+    }
+
+}
+
+const doubleList = new DoubleLinkedList()
+
+doubleList.prepend(1)
+doubleList.prepend(2)
+doubleList.prepend(3)
+doubleList.prepend(4)
+doubleList.printFromFront()
+doubleList.printFromEnd()
 
