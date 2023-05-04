@@ -560,7 +560,48 @@ class DoubleLinkedList {
         this.size++;
     }
 
+    append(value){
+        const node = new DoubleNode(value);
+        if(this.isEmpty()){
+            this.head = node;
+            this.tail = node;
+        } else {
+            this.tail.next = node;
+            node.previous = this.tail;
+            this.tail = this.tail.next;
+        }
+        this.size++;
+    }
+
+    removeFromFront(){
+        if(this.isEmpty()) return null;
+        const value = this.head.value;
+        if(this.getSize() === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+            this.head.previous = null;
+        }
+        this.size--;
+        return value;
+    }
+    removeFromEnd(){
+        if(this.isEmpty()) return null;
+        const value = this.tail.value;
+        if(this.getSize() === 1){
+            this.head === null;
+            this.tail === null;
+        } else {
+            this.tail = this.tail.previous;
+            this.tail.next = null;
+        }
+        this.size--;
+        return value;
+    }
+
     printFromFront(){
+        if(this.isEmpty()) return console.log('List is empty');
         let elements = '';
 
         let current = this.head;
@@ -572,6 +613,7 @@ class DoubleLinkedList {
     }
 
     printFromEnd(){
+        if(this.isEmpty()) return console.log('List is empty');
         let elements = '';
 
         let current = this.tail;
@@ -586,10 +628,17 @@ class DoubleLinkedList {
 
 const doubleList = new DoubleLinkedList()
 
-doubleList.prepend(1)
+doubleList.append(1)
 doubleList.prepend(2)
-doubleList.prepend(3)
-doubleList.prepend(4)
+doubleList.append(3)
+doubleList.append(4)
+console.log(doubleList.removeFromFront())
+console.log(doubleList.removeFromFront())
+console.log(doubleList.removeFromFront())
+console.log(doubleList.removeFromFront())
+
+
+
 doubleList.printFromFront()
 doubleList.printFromEnd()
 
