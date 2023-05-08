@@ -79,7 +79,7 @@ class Stack {
 
 // console.log('STACK: ', stack)
 
-// // QUEUE 
+// // QUEUE
 
 class Queue {
     constructor(){
@@ -146,7 +146,7 @@ class QueueObject {
     }
     isEmpty(){
         return (this.rear-this.front) === 0
-    } 
+    }
     peek(){
         return this.obj[this.front]
     }
@@ -275,7 +275,7 @@ class LinkedList {
     getSize(){
         return this.size;
     }
-    
+
     prepend(value){
         const node = new Node(value);
         if(!this.isEmpty()){
@@ -324,7 +324,7 @@ class LinkedList {
             let previous = this.head;
             while(currentIndex !== index-1){
                 currentIndex++;
-                previous = previous.next;     
+                previous = previous.next;
             }
             node.next = previous.next
             previous.next = node;
@@ -370,7 +370,7 @@ class LinkedList {
             this.size--;
         }
 
-        return removedNode?.value ?? removedNode;  
+        return removedNode?.value ?? removedNode;
     }
     search(value){
         if(this.isEmpty()) {
@@ -381,7 +381,7 @@ class LinkedList {
             while(current){
                 if(current.value === value){
                     return index;
-                } 
+                }
                 current = current.next;
                 index++;
             }
@@ -391,14 +391,14 @@ class LinkedList {
     reverse(){
         let previous = null;
         let current = this.head;
-        
+
         while (current) {
           const next = current.next;
           current.next = previous;
           previous = current;
           current = next;
         }
-        
+
         this.head = previous;
         return;
     }
@@ -551,11 +551,11 @@ class DoubleLinkedList {
         const node = new DoubleNode(value);
         if(this.isEmpty()){
             this.head = node;
-            this.tail = node; 
+            this.tail = node;
         } else {
             this.head.previous = node;
             node.next = this.head;
-            this.head = node;   
+            this.head = node;
         }
         this.size++;
     }
@@ -658,25 +658,50 @@ class HashTable {
 
     set(key, value){
         const index = this.hash(key);
-        this.table[index] = value;
+        // this.table[index] = value;
+        const bucket = this.table[index];
+        if(!bucket){
+            this.table[index] = [[key, value]];
+        } else {
+            const sameKeyItem = bucket.find(item => item[0] === key)
+            if(sameKeyItem){
+                sameKeyItem[1] = value;
+            } else {
+                bucket.push([key, value]);
+            }
+        }
     }
 
     get(key){
         const index = this.hash(key);
-        return this.table[index];
+        // return this.table[index];
+        const bucket = this.table[index];
+        if(bucket){
+            const sameKeyItem = bucket.find(item => item?.[0] === key);
+            if(sameKeyItem){
+                return sameKeyItem[1];
+            }
+        }
+        return undefined;
     }
 
     remove(key) {
         const index = this.hash(key);
-        const value = this.table[index];
-        this.table[index] = undefined;
-        return value;
+        // this.table[index] = undefined;
+        const bucket = this.table[index];
+        if(bucket){
+            const sameKeyItem = bucket.find(item => item[0] === key);
+            if(sameKeyItem){
+                bucket.splice(bucket.indexOf(sameKeyItem), 1);
+            }
+        }
     }
 
     display(){
         for(let i = 0; i < this.table.length; i++){
             if(this.table[i]){
-                console.log(`${i}: ${this.table[i]}`)
+                // console.log(`${i}: ${this.table[i]}`)
+                console.log(i, this.table[i])
             }
         }
     }
@@ -685,6 +710,11 @@ class HashTable {
 const table = new HashTable(50);
 
 table.set('name', 'Mazapán');
+table.set('name', 'Cecilio');
+table.set('mane', 'Pelispedia');
 table.set('age', 5);
-console.log(table.get('age'));
+// console.log(table.get('mane'));
+table.remove('name');
+// console.log(table.get('mane'));
+// console.log(table)
 table.display()
