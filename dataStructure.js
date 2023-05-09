@@ -707,14 +707,65 @@ class HashTable {
     }
 }
 
-const table = new HashTable(50);
+// const table = new HashTable(50);
 
-table.set('name', 'Mazapán');
-table.set('name', 'Cecilio');
-table.set('mane', 'Pelispedia');
-table.set('age', 5);
-// console.log(table.get('mane'));
-table.remove('name');
-// console.log(table.get('mane'));
-// console.log(table)
-table.display()
+// table.set('name', 'Mazapán');
+// table.set('name', 'Cecilio');
+// table.set('mane', 'Pelispedia');
+// table.set('age', 5);
+// // console.log(table.get('mane'));
+// table.remove('name');
+// // console.log(table.get('mane'));
+// // console.log(table)
+// table.display()
+
+// BINARY SEARCH TREE
+
+class NodeTree {
+    constructor(value){
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor(){
+        this.root = null
+    }
+
+    isEmpty(){
+        return this.root === null;
+    }
+    insert(value){
+        const node = new NodeTree(value)
+        if(this.isEmpty()) return this.root = node;
+        else this.insertNode(this.root, node);
+    }
+
+    insertNode(root, node){
+        if(node.value >= root.value){
+            if(root.right){
+                this.insertNode(root.right, node)
+            } else {
+                root.right = node;
+            }
+        } else {
+            if(root.left){
+                this.insertNode(root.left, node)
+            } else {
+                root.left = node;
+            }
+        }
+    }
+
+}
+
+const tree = new BinarySearchTree();
+
+tree.insert(10);
+tree.insert(5);
+tree.insert(15);
+tree.insert(20);
+tree.insert(2);
+console.log(tree)
