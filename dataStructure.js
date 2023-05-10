@@ -759,6 +759,20 @@ class BinarySearchTree {
         }
     }
 
+    search(root, value){
+        if(!root) {
+            return false;
+        } 
+        if(root.value === value){
+            return true;
+        } else if(value >= root.value){
+            return this.search(root.right, value)
+        } else {
+            return this.search(root.left, value)
+        }
+
+    }
+
 }
 
 const tree = new BinarySearchTree();
@@ -767,5 +781,5 @@ tree.insert(10);
 tree.insert(5);
 tree.insert(15);
 tree.insert(20);
-tree.insert(2);
-console.log(tree)
+
+console.log(tree.search(tree.root, 15))
